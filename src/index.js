@@ -4,27 +4,45 @@ import './index.css';
 
 class Square extends React.Component {
     // 使用state来进行点击得记录
-    constructor(props){
-        super(props);
-        this.state = {
-            value: null,
-        };
-    }
+    // constructor(props){
+    //     super(props);
+    //     this.state = {
+    //         value: null,
+    //     };
+    // } -- 不在需要本身来保存state了， 由父组件来传入参数
     render() {
       return (
         // <button className="square" onClick={function() { console.log('click');}}>
         // 使用箭头函数
         <button className="square" 
-                onClick={()=> { this.setState({value: 'X'})}}>
-          {this.state.value}
+                onClick={()=> { this.props.onClick()}}>
+          {this.props.value}
         </button>
       );
     }
   }
   
   class Board extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            squares: Array(9).fill(null),
+        };
+    }
+
+
+    handleClick(i){
+        // slice() 返回了一个数组的副本
+        const squares = this.state.squares.slice();
+        squares[i] = 'X';
+        this.setState({squares: squares})
+    }
+
     renderSquare(i) {
-      return <Square value={i}/>;
+      // return 加个小括号 避免破坏代码结构
+      return (<Square 
+                value={this.state.squares[i]}
+                onClick={() => this.handleClick(i)}/>);
     }
   
     render() {
