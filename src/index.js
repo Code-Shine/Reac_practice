@@ -35,6 +35,7 @@ import './index.css';
         super(props);
         this.state = {
             squares: Array(9).fill(null),
+            xIsNext: true,// X 是先手棋
         };
     }
 
@@ -42,8 +43,11 @@ import './index.css';
     handleClick(i){
         // slice() 返回了一个数组的副本
         const squares = this.state.squares.slice();
-        squares[i] = 'X';
-        this.setState({squares: squares})
+        squares[i] = this.state.xIsNext ? 'X' : 'O';
+        this.setState({
+            squares: squares,
+            xIsNext: !this.state.xIsNext,
+        })
     }
 
     renderSquare(i) {
@@ -54,7 +58,8 @@ import './index.css';
     }
   
     render() {
-      const status = 'Next player: X';
+        // status 用来记录下一步是那个玩家
+      const status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
   
       return (
         <div>
