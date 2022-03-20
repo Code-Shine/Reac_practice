@@ -2,26 +2,6 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 
-// class Square extends React.Component {
-//     // 使用state来进行点击得记录
-//     // constructor(props){
-//     //     super(props);
-//     //     this.state = {
-//     //         value: null,
-//     //     };
-//     // } -- 不在需要本身来保存state了， 由父组件来传入参数
-//     render() {
-//       return (
-//         // <button className="square" onClick={function() { console.log('click');}}>
-//         // 使用箭头函数
-//         <button className="square" 
-//                 onClick={()=> { this.props.onClick()}}>
-//           {this.props.value}
-//         </button>
-//       );
-//     }
-//   } -- 更改为函数组件,因为只包含一个render 方法，并不包含state
-
   function Square(props) {
       return (
           <button className='square' onClick={props.onClick}>
