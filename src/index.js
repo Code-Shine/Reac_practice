@@ -81,7 +81,9 @@ class Game extends React.Component {
     }
     render() {
         const history = this.state.history;
+        // current代指当前棋盘得状态
         const current = history[this.state.stepNumber];
+        // 根据当前得状态来判断胜者
         const winner = calculateWinner(current.squares);
 
 
